@@ -1,11 +1,11 @@
 <?php
-$host = "${{RAILWAY_PRIVATE_DOMAIN}}";  // el que te da Railway
-$usuario = "root";                            // el que te da Railway
-$clave = "pvxnlarxDSXefidLYIxYxACwkcBfucNk";                   // la contraseña de Railway
-$base_datos = "${{MYSQL_DATABASE}}";                      // el nombre de la DB
-$puerto = 3306;                               // el puerto que te asignaron
+$host = getenv("mysql.railway.internal");
+$user = getenv("root");
+$pass = getenv("pvxnlarxDSXefidLYIxYxACwkcBfucNk");
+$name = getenv("railway");
+$port = getenv("3306") ?: 3306;
 
-$conexion = mysqli_connect($host, $usuario, $clave, $base_datos, $puerto);
+$conexion = mysqli_connect($host, $user, $pass, $name, (int)$port);
 
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
